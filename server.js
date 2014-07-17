@@ -9,12 +9,20 @@ var app = express();
 app.use(bodyParser());
 
 // MySQL
+// var Pactual = mysql.createConnection({
+//   host: '189.3.44.196',
+//   port: '3306',
+//   user: 'root',
+//   password: '',
+//   database: 'pactual'
+// });
+
 var Pactual = mysql.createConnection({
-  host: '189.3.44.196',
+  host: 'web.voxpopuli.com.br',
   port: '3306',
-  user: 'root',
-  password: '',
-  database: 'pactual'
+  user: 'alex',
+  password: 'etropusvox',
+  database: 'voxpopuli'
 });
 
 var Orion = mysql.createConnection({

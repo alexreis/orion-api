@@ -10,11 +10,11 @@ var Dashboard = mongoose.model('Dashboard'),
     Variable = mongoose.model('Variable');
 
 var Pactual = mysql.createConnection({
-  host: '189.3.44.196',
+  host: 'web.voxpopuli.com.br',
   port: '3306',
-  user: 'root',
-  password: '',
-  database: 'pactual'
+  user: 'alex',
+  password: 'etropusvox',
+  database: 'voxpopuli'
 });
 
 Pactual.connect(function(err) { console.log('Pactual - id ' + Pactual.threadId); });
@@ -24,7 +24,7 @@ exports.find = function(req, res) {
   var from = '2014-07-10',
       to = '2014-07-17';
 
-  Pactual.query('SHOW COLUMNS FROM pactualtrackingnacional', function(err, rows) {
+  Pactual.query('SHOW COLUMNS FROM pactualtrackingnacional_backup', function(err, rows) {
     if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
 
     var variables = [];
@@ -33,7 +33,7 @@ exports.find = function(req, res) {
     });
 
     async.each(variables, function(variable, callback) {
-      var query = "SELECT SEXO, count(SEXO) FROM pactualtrackingnacional\
+      var query = "SELECT SEXO, count(SEXO) FROM pactualtrackingnacional_backup\
                   WHERE REM = 0\
                   AND criado BETWEEN '" + from + "' AND '" + to + "' GROUP BY SEXO";
 
@@ -53,27 +53,75 @@ exports.findById = function(req, res) {
   switch(column) {
     case 'ETP1':
       title = 'Intenção de voto para presidente';
+      labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
+  { name: 2, label: 'Dilma Roussef (PT)' },
+  { name: 3, label: 'Eduardo Campos (PSB)' },
+  { name: 4, label: 'Eduardo Jorge (PV)' },
+  { name: 5, label: 'Eymael (PSDC)' },
+  { name: 6, label: 'Levy Fidelix (PRTB)' },
+  { name: 7, label: 'Luciana Genro (PSOL)' },
+  { name: 8, label: 'Mauro Iasi (PCB)' },
+  { name: 9, label: 'Pastor Everaldo (PSC)' },
+  { name: 10, label: 'Rui Costa Pimenta (PCO)' },
+  { name: 11, label: 'Zé Maria (PSTU)' },
+  { name: 77, label: 'Ninguém/Branco/Nulo' },
+  { name: 88, label: 'NS' },
+  { name: 99, label: 'NR' } ];
       break;
     case 'DVP':
       title = 'Decididos voto para presidente';
+      labels = [ { name: -1, label: '-1' },
+  { name: 1, label: 'Sim' },
+  { name: 2, label: 'Não' } ];
       break;
     case 'ETP2':
       title = 'Intenção de voto para presidente 2 turno - cenário 1';
+      labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
+  { name: 2, label: 'Dilma Roussef (PT)' },
+  { name: 7, label: 'Ninguém/Branco/Nulo' },
+  { name: 8, label: 'NS' },
+  { name: 9, label: 'NR' } ];
       break;
     case 'ETP3':
       title = 'Intenção de voto para presidente 2 turno - cenário 2';
+      labels = [ { name: 1, label: 'Dilma Roussef (PT)' },
+  { name: 2, label: 'Eduardo Campos (PSB)' },
+  { name: 7, label: 'Ninguém/Branco/Nulo' },
+  { name: 8, label: 'NS' },
+  { name: 9, label: 'NR' } ];
       break;
     case 'SEXO':
       title = 'Sexo';
+      labels = [ { name: 1, label: 'Masculino' }, { name: 2, label: 'Feminino' } ];
       break;
     case 'ESC':
       title = 'Escolaridade';
+      labels = [ { name: 1, label: 'Até 4a série ou 5o ano do Ensino Fundamental' },
+  { name: 2, label: 'De 5a até 8a série ou do 6o até o 9o ano do Ensino Fundamental' },
+  { name: 3, label: 'Ensino Médio completo ou incompleto' },
+  { name: 4, label: 'Superior completo ou incompleto' } ];
+
       break;
     case 'COP1':
       title = 'Nível de conhecimento Dilma Roussseff';
+      labels = [
+        { name: 1, label: 'Conhece bem/tem muitas informações sobre ele(a)' },
+        { name: 2, label: 'Conhece, mas não muito/tem algumas informações sobre ele(a)' },
+        { name: 3, label: 'Conhece só de nome/só de ouvir falar' },
+        { name: 4, label: 'Não conhece/É a primeira vez que ouve falar o nome' },
+        { name: 9, label: 'NR' }
+      ];
+
       break;
     case 'COP2':
       title = 'Nível de conhecimento Aécio Neves';
+      labels = [
+        { name: 1, label: 'Conhece bem/tem muitas informações sobre ele(a)' },
+        { name: 2, label: 'Conhece, mas não muito/tem algumas informações sobre ele(a)' },
+        { name: 3, label: 'Conhece só de nome/só de ouvir falar' },
+        { name: 4, label: 'Não conhece/É a primeira vez que ouve falar o nome' },
+        { name: 9, label: 'NR' }
+      ];
       break;
     default:
     title = column;
@@ -86,15 +134,19 @@ exports.findById = function(req, res) {
       tomorrow = d3.time.day.offset(new Date(), 1);
 
   if (req.query.from && req.query.to) {
-    var from = req.query.from.replace(/-/g, '');
-    var to = req.query.to.replace(/-/g, '');
+      var from = req.query.from.replace(/-/g, '');
+      var to = req.query.to.replace(/-/g, '');
+      to = format(d3.time.day.offset(format.parse(to), 1));
   } else {
-    var from = '20140710',
+    var from = '20140714',
         to = format(tomorrow);
   }
   
+  console.log('from', from);
+  console.log('to', to);
     
   var dates = d3.time.day.range(format.parse(from), format.parse(to), 1);
+  console.log('DATES', dates);
   var dateStrings = [];
   var dateStrings2 = [];
   dates.forEach(function(d) {
@@ -106,9 +158,17 @@ exports.findById = function(req, res) {
   var n = dateStrings.length;
 
   for (var i = 0; i < n - 1; i++) {
-    var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
+    var lowerDate = format.parse(dateStrings[i]);
+    lowerDate = d3.time.day.offset(lowerDate, -4);
+    lowerDate = format(lowerDate);
+    var upperDate = dateStrings[i];
+
+
+    console.log('lowerDate', lowerDate);
+    console.log('upperDate', upperDate);
+    var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional_backup\
               WHERE REM = 0\
-              AND ANO*10000+MES*100+DIA BETWEEN '" + dateStrings[i] + "' AND '" + dateStrings[i + 1] + "'\
+              AND ANO*10000+MES*100+DIA BETWEEN '" + lowerDate + "' AND '" + upperDate + "'\
               AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
               GROUP BY " + column;
 
@@ -119,7 +179,7 @@ exports.findById = function(req, res) {
 
   async.waterfall([
     function(callback) {
-      var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
+      var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional_backup\
               WHERE REM = 0\
               AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
               GROUP BY " + column;
@@ -147,7 +207,7 @@ exports.findById = function(req, res) {
         });
       }, function(err) {
         if (err) return callback({ error: { status: 500, message: 'Internal Server Error.' }});
-        
+
         return callback(null, values, results);
       });
     },
@@ -186,7 +246,29 @@ exports.findById = function(req, res) {
   ], function(err, results) {
     if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
 
-    console.log( 'result',  results);
+    
+
+    results.forEach(function(d, i) {
+      
+      d.total = 0;
+
+      d.values.forEach(function(v) {
+        d.total += v.value;
+      });
+
+      d.values.forEach(function(v) {
+        v.value = d3.round((v.value/d.total) * 100, 2);
+      });
+
+      labels.forEach(function(dd) {
+        if (d.name === dd.name) {
+          d.name = dd.label;
+        }
+      });
+
+      console.log('RESULT D', d);
+    });
+
     return res.send(200, { variable: { _id: req.params.id, name: req.params.id, title: title, data: results }});
   });
 };
