@@ -48,15 +48,31 @@ exports.find = function(req, res) {
 exports.findById = function(req, res) {
   var column = req.params.id;
 
-  var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
+  var query1 = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
               WHERE REM = 0\
-              AND ANO*10000+MES*100+DIA BETWEEN '20140713' AND '20140717'\
+              AND ANO*10000+MES*100+DIA BETWEEN '20140713' AND '20140714'\
               AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
               GROUP BY " + column;
+
+  var query2 = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
+              WHERE REM = 0\
+              AND ANO*10000+MES*100+DIA BETWEEN '20140714' AND '20140715'\
+              AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
+              GROUP BY " + column;
+
+  var queries = [
+    query1, query2
+  ];
   
-  Pactual.query(query, function(err, rows) {
-    
-    return res.send(200, { variable: { _id: req.params.id, name: req.params.id, data: rows }});
+  async.each(queries, function(query, callback) {
+    Pactual.query(query, function(err, rows) {
+      
+      console.log('rows', rows);
+      return callback(null);
+      // return res.send(200, { variable: { _id: req.params.id, name: req.params.id, data: rows }});
+    });
+  }, function(err) {
+    return res.send(200);
   });
 };
 
