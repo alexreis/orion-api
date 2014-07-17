@@ -20,8 +20,8 @@ Pactual.connect(function(err) { console.log('Pactual - id ' + Pactual.threadId);
 
 exports.find = function(req, res) {
 
-  var from = '2014-07-13',
-      to = '2014-07-17';
+  var from = '20140713',
+      to = '20140717';
 
   Pactual.query('SHOW COLUMNS FROM pactualtrackingnacional', function(err, rows) {
     if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
@@ -48,11 +48,13 @@ exports.find = function(req, res) {
 exports.findById = function(req, res) {
   var column = req.params.id;
 
-  Pactual.query('SELECT ' + column + ', count(' + column + ')\
-                FROM pactualtrackingnacional\
-                WHERE REM = 0\
-                GROUP BY ' + column + '',
-                function(err, rows) {
+  var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional\
+              WHERE REM = 0\
+              AND ANO*10000+MES*100+DIA BETWEEN '20140713' AND '20140717'\
+              AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
+              GROUP BY " + column;
+  
+  Pactual.query(query, function(err, rows) {
     
     return res.send(200, { variable: { _id: req.params.id, name: req.params.id, data: rows }});
   });
