@@ -48,7 +48,38 @@ exports.find = function(req, res) {
 
 exports.findById = function(req, res) {
   var column = req.params.id;
-  
+  var title = column;
+
+  switch(column) {
+    case 'ETP1':
+      title = 'Intenção de voto para presidente';
+      break;
+    case 'DVP':
+      title = 'Decididos voto para presidente';
+      break;
+    case 'ETP2':
+      title = 'Intenção de voto para presidente 2 turno - cenário 1';
+      break;
+    case 'ETP3':
+      title = 'Intenção de voto para presidente 2 turno - cenário 2';
+      break;
+    case 'SEXO':
+      title = 'Sexo';
+      break;
+    case 'ESC':
+      title = 'Escolaridade';
+      break;
+    case 'COP1':
+      title = 'Nível de conhecimento Dilma Roussseff';
+      break;
+    case 'COP2':
+      title = 'Nível de conhecimento Aécio Neves';
+      break;
+    default:
+    title = column;
+    break;
+  }
+
   // -------------------------------------------------------
   var format = d3.time.format('%Y%m%d'),
       format2 = d3.time.format('%Y-%m-%d'),
@@ -156,7 +187,7 @@ exports.findById = function(req, res) {
     if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
 
     console.log( 'result',  results);
-    return res.send(200, { variable: { _id: req.params.id, name: req.params.id, data: results }});
+    return res.send(200, { variable: { _id: req.params.id, name: req.params.id, title: title, data: results }});
   });
 };
 
