@@ -54,8 +54,14 @@ exports.findById = function(req, res) {
       format2 = d3.time.format('%Y-%m-%d'),
       tomorrow = d3.time.day.offset(new Date(), 1);
 
-  var from = '20140710',
-      to = format(tomorrow);
+  if (req.query.from && req.query.to) {
+    var from = req.query.from.replace(/-/g, '');
+    var to = req.query.to.replace(/-/g, '');
+  } else {
+    var from = '20140710',
+        to = format(tomorrow);
+  }
+  
     
   var dates = d3.time.day.range(format.parse(from), format.parse(to), 1);
   var dateStrings = [];
