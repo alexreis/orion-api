@@ -11,6 +11,9 @@
     "body-parser": "latest",
     "request": "latest",
     "mysql": "latest",
-    "d3": "latest"
+    "d3": "latest",
+    "express-session": "latest",
+    "connect-redis": "latest",
+    "cookie-session": "latest"
   }
 }

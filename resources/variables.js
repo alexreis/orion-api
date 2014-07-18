@@ -187,11 +187,11 @@ case 'RENDAF':
 case 'EPP':
     title = 'Intenção de voto espontânea para presidente';
     labels = [
-      { name: 1, label: 'Aécio Neves (PSDB)' },
-      { name: 2, label: 'Dilma (PT)' },
-      { name: 3, label: 'Eduardo Campos (PSB)' },
-      { name: 4, label: 'Eduardo Jorge (PV)' },
-      { name: 5, label: 'Eymael (PSDC)' },
+      { name: 1, label: 'Aécio' },
+      { name: 2, label: 'Dilma' },
+      { name: 3, label: 'Eduardo' },
+      { name: 4, label: 'Eduardo Jorge' },
+      { name: 5, label: 'Eymael' },
       { name: 6, label: 'Levy Fidelix (PRTB)' },
       { name: 7, label: 'Luciana Genro (PSOL)' },
       { name: 8, label: 'Mauro Iasi (PCB)' },
@@ -202,7 +202,7 @@ case 'EPP':
       { name: 13, label: 'Marina Silva' },
       { name: 14, label: 'José Serra' },
       { name: 15, label: 'Outros' },
-      { name: 77, label: 'Ninguém/Branco/Nulo' },
+      { name: 77, label: 'Ninguém' },
       { name: 88, label: 'NS'},
       { name: 99, label: 'NR' }
     ];
@@ -211,11 +211,11 @@ case 'EPP':
 case 'EPPR2':
     title = 'Intenção de voto espontânea para presidente';
     labels = [
-      { name: 1, label: 'Aécio Neves (PSDB)' },
-      { name: 2, label: 'Dilma (PT)' },
-      { name: 3, label: 'Eduardo Campos (PSB)' },
-      // { name: 4, label: 'Eduardo Jorge (PV)' },
-      // { name: 5, label: 'Eymael (PSDC)' },
+      { name: 1, label: 'Aécio' },
+      { name: 2, label: 'Dilma' },
+      { name: 3, label: 'Eduardo' },
+      // { name: 4, label: 'Eduardo Jorge' },
+      // { name: 5, label: 'Eymael' },
       // { name: 6, label: 'Levy Fidelix (PRTB)' },
       // { name: 7, label: 'Luciana Genro (PSOL)' },
       // { name: 8, label: 'Mauro Iasi (PCB)' },
@@ -226,7 +226,7 @@ case 'EPPR2':
       // { name: 13, label: 'Marina Silva' },
       // { name: 14, label: 'José Serra' },
       { name: 15, label: 'Outros' },
-      { name: 77, label: 'Ninguém/Branco/Nulo' },
+      { name: 77, label: 'Ninguém' },
       { name: 88, label: 'NS'},
       { name: 99, label: 'NR' }
     ];
@@ -296,29 +296,29 @@ case 'PVP3':
     break;
 case 'ETP1':
     title = 'Intenção de voto estimulada para presidente';
-    labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
-  { name: 2, label: 'Dilma Roussef (PT)' },
-  { name: 3, label: 'Eduardo Campos (PSB)' },
-  { name: 4, label: 'Eduardo Jorge (PV)' },
-  { name: 5, label: 'Eymael (PSDC)' },
+    labels = [ { name: 1, label: 'Aécio' },
+  { name: 2, label: 'Dilma' },
+  { name: 3, label: 'Eduardo' },
+  { name: 4, label: 'Eduardo Jorge' },
+  { name: 5, label: 'Eymael' },
   { name: 6, label: 'Levy Fidelix (PRTB)' },
   { name: 7, label: 'Luciana Genro (PSOL)' },
   { name: 8, label: 'Mauro Iasi (PCB)' },
   { name: 9, label: 'Pastor Everaldo (PSC)' },
   { name: 10, label: 'Rui Costa Pimenta (PCO)' },
   { name: 11, label: 'Zé Maria (PSTU)' },
-  { name: 77, label: 'Ninguém/Branco/Nulo' },
+  { name: 77, label: 'Ninguém' },
   { name: 88, label: 'NS' },
   { name: 99, label: 'NR' } ];
   break;
 
   case 'ETP1R2':
     title = 'Intenção de voto estimulada para presidente';
-    labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
-  { name: 2, label: 'Dilma Roussef (PT)' },
-  { name: 3, label: 'Eduardo Campos (PSB)' },
-  // { name: 4, label: 'Eduardo Jorge (PV)' },
-  // { name: 5, label: 'Eymael (PSDC)' },
+    labels = [ { name: 1, label: 'Aécio' },
+  { name: 2, label: 'Dilma' },
+  { name: 3, label: 'Eduardo' },
+  // { name: 4, label: 'Eduardo Jorge' },
+  // { name: 5, label: 'Eymael' },
   // { name: 6, label: 'Levy Fidelix (PRTB)' },
   // { name: 7, label: 'Luciana Genro (PSOL)' },
   // { name: 8, label: 'Mauro Iasi (PCB)' },
@@ -326,7 +326,7 @@ case 'ETP1':
   // { name: 10, label: 'Rui Costa Pimenta (PCO)' },
   // { name: 11, label: 'Zé Maria (PSTU)' },
   { name: 15, label: 'Outros' },
-  { name: 77, label: 'Ninguém/Branco/Nulo' },
+  { name: 77, label: 'Ninguém' },
   { name: 88, label: 'NS' },
   { name: 99, label: 'NR' } ];
   break;
@@ -339,9 +339,9 @@ case 'DVP':
 case 'CHP':
     title = 'Quem vai ganhar?';
     labels = [
-    { name: 1, label: 'Aécio Neves (PSDB)'},
-{ name: 2, label: 'Dilma (PT)'},
-{ name: 3, label: 'Eduardo Campos (PSB)'},
+    { name: 1, label: 'Aécio'},
+{ name: 2, label: 'Dilma'},
+{ name: 3, label: 'Eduardo'},
 { name: 8, label: 'NS'},
 { name: 9, label: 'NR'},
 { name: 88, label: 'NS'},
@@ -350,17 +350,17 @@ case 'CHP':
     break;
 case 'ETP2':
     title = '2o turno Dilma vs Aécio';
-    labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
-  { name: 2, label: 'Dilma Roussef (PT)' },
-  { name: 7, label: 'Ninguém/Branco/Nulo' },
+    labels = [ { name: 1, label: 'Aécio' },
+  { name: 2, label: 'Dilma' },
+  { name: 7, label: 'Ninguém' },
   { name: 8, label: 'NS' },
   { name: 9, label: 'NR' } ];
   break;
 case 'ETP3':
     title = '2o turno Dilma vs Eduardo';
-    labels = [ { name: 1, label: 'Dilma Roussef (PT)' },
-  { name: 2, label: 'Eduardo Campos (PSB)' },
-  { name: 7, label: 'Ninguém/Branco/Nulo' },
+    labels = [ { name: 1, label: 'Dilma' },
+  { name: 2, label: 'Eduardo' },
+  { name: 7, label: 'Ninguém' },
   { name: 8, label: 'NS' },
   { name: 9, label: 'NR' } ];
   break;
@@ -588,12 +588,18 @@ case 'COR':
     });
 
     results.forEach(function(d, i) {
+      d.values.push({ date: '2014-07-18', value: d.values[0].value });
+      d.values.push({ date: '2014-07-19', value: d.values[0].value + 10 });
+
       d.values.forEach(function(v) {
         v.value = d3.round((v.value/total) * 100, 0);
         console.log('v.value', v.value);
+        // console.log('v', v);
+
       });
     });
 
+    console.log('results---------', results);
     
 
     return res.send(200, { variable: { _id: req.params.id, name: req.params.id, title: title, data: results }});
