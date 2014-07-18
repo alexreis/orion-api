@@ -26,7 +26,8 @@ var users = [
     { username: 'pactual', password: 'pactual1234' },
     { username: 'pt', password: 'pt1234' },
     { username: 'ruifalcao', password: 'ruifalcao1234' },
-    { username: 'quali', password: 'quali1234' }
+    { username: 'quali', password: 'quali1234' },
+    { username: 'vox', password: 'vox1234' }
   ];
 
 var app = express();
