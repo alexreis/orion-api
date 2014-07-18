@@ -213,3 +213,43 @@ case 'REL2':
 case 'COR':
     title = 'Cor/Raça';
     labels = [];
+
+
+
+    ----------
+
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$set: {variables: []}});
+
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'TRABALHO', title: 'Condição de trabalho', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ROD', title: 'Rodada do tracking', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'MUN', title: 'Município', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ZONA', title: 'Zona residencial', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'UF', title: 'Estado', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'SEXO', title: 'Sexo', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'IDADE', title: 'Idade', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'IDADEF', title: 'Idade categorizada', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ESC', title: 'Grau de escolaridade', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'SIT', title: 'Situação do trabalho', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PEA', title: 'Situação do trabalhador', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'RENDAF', title: 'Renda domiciliar', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'EPP', title: 'Intenção de voto espontânea para presidente', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP1', title: 'Grau de conhecimento a respeito de Dilma', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP2', title: 'Grau de conhecimento a respeito de Aécio', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP3', title: 'Grau de conhecimento a respeito de Eduardo', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP1', title: 'Possibilidade de votar em Dilma', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP2', title: 'Possibilidade de votar em Aécio', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP3', title: 'Possibilidade de votar em Eduardo', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP1', title: 'Intenção de voto estimulada para presidente', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'DVP', title: 'Percentual de indecisos', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'CHP', title: 'Chance de vitória na eleição presidencial', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP2', title: 'Intenção de voto para 2 turno (Cenário 1)', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP3', title: 'Intenção de voto para 2 turno (Cenário 2)', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ADP2', title: 'Avaliação do desempenho da presidenta Dilma', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'C3', title: 'Satisfação em relação ao Brasil', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'IPG', title: 'Grau de interesse por política', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'CONV', title: 'Engajamento em conversa/discussão política', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'NET1', title: 'Hábito de acessar a internet', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'REL1', title: 'Religião', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'REL2', title: 'Frequência com que vai à igreja/culto', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COR', title: 'Cor/Raça', data: [] }}})
+

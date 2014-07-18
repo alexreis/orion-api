@@ -161,7 +161,8 @@ case 'EPP':
     labels = [
     { name: 1, label: 'Aécio Neves (PSDB)' },
 { name: 2, label: 'Dilma (PT)' },
-{ name: 3, label: 'Eduardo Campos (PSB) 4 ­ Eduardo Jorge (PV)' },
+{ name: 3, label: 'Eduardo Campos (PSB)' },
+{ name: 4, label: 'Eduardo Jorge (PV)' },
 { name: 5, label: 'Eymael (PSDC)' },
 { name: 6, label: 'Levy Fidelix (PRTB)' },
 { name: 7, label: 'Luciana Genro (PSOL)' },
