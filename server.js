@@ -38,7 +38,7 @@ var Orion = mysql.createConnection({
 // Orion.connect(function(err) { console.log('Orion - id ' + Orion.threadId); });
 
 // MongoDB
-mongoose.connect('mongodb://orion:sdfwer@localhost:27017/orion', function() {
+mongoose.connect('mongodb://orion:sdfwer@192.34.56.106:27017/orion', function() {
   console.log( "Conection with orion started" );
 });
 
