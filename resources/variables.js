@@ -158,7 +158,23 @@ case 'RENDAF':
     break;
 case 'EPP':
     title = 'Intenção de voto espontânea para presidente';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Aécio Neves (PSDB)' },
+{ name: 2, label: 'Dilma (PT)' },
+{ name: 3, label: 'Eduardo Campos (PSB) 4 ­ Eduardo Jorge (PV)' },
+{ name: 5, label: 'Eymael (PSDC)' },
+{ name: 6, label: 'Levy Fidelix (PRTB)' },
+{ name: 7, label: 'Luciana Genro (PSOL)' },
+{ name: 8, label: 'Mauro Iasi (PCB)' },
+{ name: 9, label: 'Pastor Everaldo (PSC)' },
+{ name: 10, label: 'Rui Costa Pimenta (PCO) 11 ­ Zé Maria (PSTU)' },
+{ name: 12, label: 'Lula' },
+{ name: 13, label: 'Marina Silva' },
+{ name: 14, label: 'José Serra' },
+{ name: 15, label: 'Outros' },
+{ name: 77, label: 'Ninguém/Branco/Nulo 88 ­ NS' },
+{ name: 99, label: 'NR' }
+    ];
     break;
 case 'COP1':
     title = 'Grau de conhecimento a respeito de Dilma';
@@ -192,15 +208,36 @@ case 'COP3':
       break;
 case 'PVP1':
     title = 'Possibilidade de votar em Dilma';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Grande possibilidade'},
+{ name: 2, label: 'Possibilidade média/razoável'},
+{ name: 3, label: 'Possibilidade pequena'},
+{ name: 4, label: 'Nenhuma possibilidade'},
+{ name: 8, label: 'NS/Não conhece o suficiente para opinar'},
+{ name: 9, label: 'NR'}
+    ];
     break;
 case 'PVP2':
     title = 'Possibilidade de votar em Aécio';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Grande possibilidade'},
+{ name: 2, label: 'Possibilidade média/razoável'},
+{ name: 3, label: 'Possibilidade pequena'},
+{ name: 4, label: 'Nenhuma possibilidade'},
+{ name: 8, label: 'NS/Não conhece o suficiente para opinar'},
+{ name: 9, label: 'NR'}
+    ];
     break;
 case 'PVP3':
     title = 'Possibilidade de votar em Eduardo';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Grande possibilidade'},
+{ name: 2, label: 'Possibilidade média/razoável'},
+{ name: 3, label: 'Possibilidade pequena'},
+{ name: 4, label: 'Nenhuma possibilidade'},
+{ name: 8, label: 'NS/Não conhece o suficiente para opinar'},
+{ name: 9, label: 'NR'}
+    ];
     break;
 case 'ETP1':
     title = 'Intenção de voto estimulada para presidente';
@@ -227,7 +264,14 @@ case 'DVP':
   break;
 case 'CHP':
     title = 'Chance de vitória na eleição presidencial';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Aécio Neves (PSDB)'},
+{ name: 2, label: 'Dilma (PT)'},
+{ name: 3, label: 'Eduardo Campos (PSB)'},
+{ name: 8, label: 'NS'},
+{ name: 9, label: 'NR CHP 88 ­ NS'},
+{ name: 99, label: 'NR'}
+    ];
     break;
 case 'ETP2':
     title = 'Intenção de voto para 2 turno (Cenário 1)';
@@ -247,35 +291,85 @@ case 'ETP3':
   break;
 case 'ADP2':
     title = 'Avaliação do desempenho da presidenta Dilma';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Ótimo' },
+{ name: 2, label: 'Bom' },
+{ name: 3, label: 'Regular positivo' },
+{ name: 4, label: 'Regular negativo' },
+{ name: 5, label: 'Ruim' },
+{ name: 6, label: 'Péssimo' },
+{ name: 8, label: 'NS' },
+{ name: 9, label: 'NR' }
+    ];
     break;
 case 'C3':
     title = 'Satisfação em relação ao Brasil';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Muito satisfeito;'},
+{ name: 2, label: 'Satisfeito;'},
+{ name: 3, label: 'Insatisfeito OU'},
+{ name: 4, label: 'Muito insatisfeito?'},
+{ name: 8, label: 'NS'},
+{ name: 9, label: 'NR'}
+    ];
     break;
 case 'IPG':
     title = 'Grau de interesse por política';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Muito interessada' },
+{ name: 2, label: 'Mais ou menos interessada' },
+{ name: 3, label: 'Pouco interessada' },
+{ name: 4, label: 'Nada interessada' },
+{ name: 9, label: 'NR' }
+    ];
     break;
 case 'CONV':
     title = 'Engajamento em conversa/discussão política';
-    labels = [];
+    labels = [
+      { name: 1, label: 'Sim'},
+      { name: 2, label: 'Não'},
+      { name: 8, label: 'NS/Não lembra'},
+      { name: 9, label: 'NR'}
+    ];
     break;
 case 'NET1':
     title = 'Hábito de acessar a internet';
-    labels = [];
+    labels = [
+      { name: 1, label: 'Todo dia / quase todo dia' },
+      { name: 2, label: 'De vez em quando (algumas vezes por semana)'},
+      { name: 3, label: 'Raramente' },
+      { name: 4, label: 'Nunca/não acessa a internet' },
+      { name: 9, label: 'NR (ESPONTÂNEA)' }
+    ];
     break;
 case 'REL1':
     title = 'Religião';
-    labels = [];
+    labels = [
+      { name: 24, label: 'Sem religião' },
+      { name: 99, label: 'NR' }
+    ];
     break;
 case 'REL2':
     title = 'Frequência com que vai à igreja/culto';
-    labels = [];
+    labels = [
+      { name: 1, label: 'Toda semana/quase toda semana' },
+      { name: 2, label: 'De vez em quando (algumas vezes por mês)' },
+      { name: 3, label: 'Raramente (frequência superior a 1 mês)' },
+      { name: 4, label: 'Nunca vai à igreja/ao culto' },
+      { name: 9, label: 'NR' }
+    ];
     break;
 case 'COR':
     title = 'Cor/Raça';
-    labels = [];
+    labels = [
+      { name: 1, label: 'Branca' },
+      { name: 2, label: 'Preta' },
+      { name: 3, label: 'Parda' },
+      { name: 4, label: 'Amarela' },
+      { name: 5, label: 'Indígena' },
+      { name: 8, label: 'NS' },
+      { name: 9, label: 'NR' }
+    ];
     default:
     title = column;
     break;
