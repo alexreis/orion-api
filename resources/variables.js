@@ -70,7 +70,7 @@ exports.cop = function(req, res) {
 
 
  //  var queries = [queryCOP1, queryCOP2, queryCOP3];
-});
+};
 
 exports.findById = function(req, res) {
   var column = req.params.id;
