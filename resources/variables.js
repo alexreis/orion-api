@@ -546,7 +546,8 @@ case 'COR':
 
     results.forEach(function(d, i) {
       d.values.forEach(function(v) {
-        v.value = d3.round((v.value/total) * 100, 2);
+        v.value = d3.round((v.value/total) * 100, 0);
+        console.log('v.value', v.value);
       });
     });
 
