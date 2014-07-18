@@ -262,7 +262,7 @@ ATUAL
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$set: {name: 'Tracking Vox Nacional'}});
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$set: {variables: []}});
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'EPPR2', title: 'Intenção de voto espontânea para presidente', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP1', title: 'Intenção de voto estimulada para presidente', data: [] }}})
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP1R2', title: 'Intenção de voto estimulada para presidente', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'DVP', title: 'Grau de decisão', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'CHP', title: 'Quem vai ganhar?', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP2', title: '2o turno Dilma vs Aécio', data: [] }}})
