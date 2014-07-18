@@ -294,7 +294,7 @@ case 'DVP':
   { name: 2, label: 'Não' } ];
   break;
 case 'CHP':
-    title = 'Chance de vitória na eleição presidencial';
+    title = 'Quem vai ganhar?';
     labels = [
     { name: 1, label: 'Aécio Neves (PSDB)'},
 { name: 2, label: 'Dilma (PT)'},
