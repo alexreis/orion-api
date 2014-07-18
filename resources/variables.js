@@ -173,7 +173,8 @@ case 'EPP':
 { name: 13, label: 'Marina Silva' },
 { name: 14, label: 'José Serra' },
 { name: 15, label: 'Outros' },
-{ name: 77, label: 'Ninguém/Branco/Nulo 88 ­ NS' },
+{ name: 77, label: 'Ninguém/Branco/Nulo' },
+{ name: 88: label: 'NS'},
 { name: 99, label: 'NR' }
     ];
     break;
@@ -270,7 +271,8 @@ case 'CHP':
 { name: 2, label: 'Dilma (PT)'},
 { name: 3, label: 'Eduardo Campos (PSB)'},
 { name: 8, label: 'NS'},
-{ name: 9, label: 'NR CHP 88 ­ NS'},
+{ name: 9, label: 'NR CHP'},
+{ name: 88: label: 'NS'},
 { name: 99, label: 'NR'}
     ];
     break;
