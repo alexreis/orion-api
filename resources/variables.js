@@ -53,7 +53,10 @@ exports.findById = function(req, res) {
   switch(column) {
     case 'TRABALHO':
     title = 'Condição de trabalho';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Sim' },
+    { name: 2, label: 'Não' }
+    ];
     break;
 case 'ROD':
     title = 'Rodada do tracking';
@@ -69,7 +72,35 @@ case 'ZONA':
     break;
 case 'UF':
     title = 'Estado';
-    labels = [];
+    labels = [
+    { name: 1, label: 'AC' },
+    { name: 2, label: 'AL' },
+    { name: 3, label: 'AP' },
+    { name: 4, label: 'AM' },
+    { name: 5, label: 'BA' },
+    { name: 6, label: 'CE' },
+    { name: 7, label: 'DF' },
+    { name: 8, label: 'ES' },
+    { name: 9, label: 'GO' },
+    { name: 10, label: 'MA' },
+    { name: 11, label: 'MT' },
+    { name: 12, label: 'MS' },
+    { name: 13, label: 'MG' },
+    { name: 14, label: 'PB' },
+    { name: 15, label: 'PR' },
+    { name: 16, label: 'PA' },
+    { name: 17, label: 'PE' },
+    { name: 18, label: 'PI' },
+    { name: 19, label: 'RJ' },
+    { name: 20, label: 'RN' },
+    { name: 21, label: 'RS' },
+    { name: 22, label: 'RO' },
+    { name: 23, label: 'RR' },
+    { name: 24, label: 'SC' },
+    { name: 25, label: 'SE' },
+    { name: 26, label: 'SP' },
+    { name: 27, label: 'TO' }
+    ];
     break;
 case 'SEXO':
     title = 'Sexo';
