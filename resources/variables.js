@@ -108,11 +108,19 @@ case 'SEXO':
     break;
 case 'IDADE':
     title = 'Idade';
-    labels = [];
+    labels = [
+    ];
     break;
 case 'IDADEF':
     title = 'Idade categorizada';
-    labels = [];
+    labels = [
+      { name: 1, label: '16 a 17 anos' },
+      { name: 2, label: '18 a 24 anos' },
+      { name: 3, label: '25 a 34 anos' },
+      { name: 4, label: '35 a 44 anos' },
+      { name: 5, label: '45 a 59 anos' },
+      { name: 6, label: '60 anos ou mais' }
+    ];
     break;
 case 'ESC':
     title = 'Grau de escolaridade';
@@ -123,11 +131,26 @@ case 'ESC':
   break;
 case 'SIT':
     title = 'Situação do trabalho';
-    labels = [];
+    labels = [
+    { name: 1, label: 'Trabalhando em emprego com carteira assinada'},
+{ name: 2, label: 'Funcionário público estatutário'},
+{ name: 3, label: 'Trabalhando em emprego sem carteira assinada'},
+{ name: 4, label: 'Trabalhando como autônomo' },
+{ name: 5, label: 'Profissional liberal' },
+{ name: 6, label: 'Empregador' },
+{ name: 7, label: 'Está desempregado há menos de 1 ano'},
+{ name: 8, label: 'Está desempregado há mais de 1 ano' },
+{ name: 9, label: 'É estudante' },
+{ name: 10, label: 'Aposentado' },
+{ name: 11, label: 'Dona de casa' }
+    ];
     break;
 case 'PEA':
     title = 'Situação do trabalhador';
-    labels = [];
+    labels = [
+      { name: 1, label: 'PEA' },
+      { name: 2, label: 'Não PEA' }
+    ];
     break;
 case 'RENDAF':
     title = 'Renda domiciliar';
