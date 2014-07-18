@@ -300,7 +300,7 @@ case 'CHP':
 { name: 2, label: 'Dilma (PT)'},
 { name: 3, label: 'Eduardo Campos (PSB)'},
 { name: 8, label: 'NS'},
-{ name: 9, label: 'NR CHP'},
+{ name: 9, label: 'NR'},
 { name: 88, label: 'NS'},
 { name: 99, label: 'NR'}
     ];
@@ -337,12 +337,12 @@ case 'ADP2':
 case 'C3':
     title = 'Satisfação em relação ao Brasil';
     labels = [
-    { name: 1, label: 'Muito satisfeito;'},
-{ name: 2, label: 'Satisfeito;'},
-{ name: 3, label: 'Insatisfeito OU'},
-{ name: 4, label: 'Muito insatisfeito?'},
-{ name: 8, label: 'NS'},
-{ name: 9, label: 'NR'}
+      { name: 1, label: 'Muito satisfeito'},
+      { name: 2, label: 'Satisfeito'},
+      { name: 3, label: 'Insatisfeito'},
+      { name: 4, label: 'Muito insatisfeito'},
+      { name: 8, label: 'NS'},
+      { name: 9, label: 'NR'}
     ];
     break;
 case 'IPG':
