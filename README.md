@@ -259,6 +259,7 @@ db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {varia
 
 ATUAL
 
+db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$set: {name: 'Tracking Vox Nacional'}});
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$set: {variables: []}});
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'EPP', title: 'Intenção de voto espontânea para presidente', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP1', title: 'Intenção de voto estimulada para presidente', data: [] }}})
@@ -268,9 +269,3 @@ db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {varia
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ETP3', title: '2o turno Dilma vs Eduardo', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'ADP2', title: 'Avaliação do desempenho da presidenta Dilma', data: [] }}})
 db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'C3', title: 'Satisfação em relação ao Brasil', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP1', title: 'Grau de conhecimento a respeito de Dilma', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP2', title: 'Grau de conhecimento a respeito de Aécio', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'COP3', title: 'Grau de conhecimento a respeito de Eduardo', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP1', title: 'Possibilidade de votar em Dilma', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP2', title: 'Possibilidade de votar em Aécio', data: [] }}})
-db.dashboards.update({_id: ObjectId('53c8109e95b8466b0d70acca')}, {$push: {variables: { name: 'PVP3', title: 'Possibilidade de votar em Eduardo', data: [] }}})

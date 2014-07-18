@@ -288,7 +288,7 @@ case 'ETP1':
   { name: 99, label: 'NR' } ];
   break;
 case 'DVP':
-    title = 'Percentual de indecisos';
+    title = 'Percentual de decididos';
     labels = [ { name: -1, label: '-1' },
   { name: 1, label: 'Sim' },
   { name: 2, label: 'Não' } ];
