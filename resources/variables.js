@@ -418,6 +418,7 @@ case 'COR':
     console.log('upperDate', upperDate);
     var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional_backup\
               WHERE REM = 0\
+              AND " + column + " != -1\
               AND ANO*10000+MES*100+DIA BETWEEN '" + lowerDate + "' AND '" + upperDate + "'\
               AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
               GROUP BY " + column;
@@ -431,6 +432,7 @@ case 'COR':
     function(callback) {
       var query = "SELECT " + column + ", count(" + column + ") FROM pactualtrackingnacional_backup\
               WHERE REM = 0\
+              AND " + column + " != -1\
               AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9\
               GROUP BY " + column;
 
