@@ -110,7 +110,7 @@ app.patch( '/v1/reports/:id', reports.patchRecord );
 
 // Variables
 app.get(    '/v1/variables', variables.find );
-app.get(    '/v1/variables/COP', variables.cop );
+app.get(    '/v1/variables/loneCOP', variables.cop );
 app.get(    '/v1/variables/:id', variables.findById );
 app.post(   '/v1/variables', variables.createRecord );
 app.put(    '/v1/variables/:id', variables.updateRecord );

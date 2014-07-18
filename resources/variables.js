@@ -70,6 +70,8 @@ exports.cop = function(req, res) {
 
 
  //  var queries = [queryCOP1, queryCOP2, queryCOP3];
+
+ return res.send(200);
 };
 
 exports.findById = function(req, res) {
