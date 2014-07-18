@@ -76,6 +76,13 @@ exports.find = function(req, res) {
 
 exports.findById = function(req, res) {
   var column = req.params.id;
+
+  if (column === 'ETP1R2xxREG') {
+    console.log('regiao', column);
+  } else {
+    console.log('normal', column);
+  }
+
   var title = column;
 
   switch(column) {
@@ -588,8 +595,8 @@ case 'COR':
     });
 
     results.forEach(function(d, i) {
-      d.values.push({ date: '2014-07-18', value: d.values[0].value });
-      d.values.push({ date: '2014-07-19', value: d.values[0].value + 10 });
+      // d.values.push({ date: '2014-07-18', value: d.values[0].value });
+      // d.values.push({ date: '2014-07-19', value: d.values[0].value + 10 });
 
       d.values.forEach(function(v) {
         v.value = d3.round((v.value/total) * 100, 0);
@@ -604,6 +611,10 @@ case 'COR':
 
     return res.send(200, { variable: { _id: req.params.id, name: req.params.id, title: title, data: results }});
   });
+};
+
+var crossReg = function(req, res) {
+
 };
 
 exports.createRecord = function(req, res) {
