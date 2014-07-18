@@ -306,7 +306,7 @@ case 'CHP':
     ];
     break;
 case 'ETP2':
-    title = 'Intenção de voto para 2 turno (Cenário 1)';
+    title = '2o turno Dilma vs Aécio';
     labels = [ { name: 1, label: 'Aécio Neves (PSDB)' },
   { name: 2, label: 'Dilma Roussef (PT)' },
   { name: 7, label: 'Ninguém/Branco/Nulo' },
@@ -314,7 +314,7 @@ case 'ETP2':
   { name: 9, label: 'NR' } ];
   break;
 case 'ETP3':
-    title = 'Intenção de voto para 2 turno (Cenário 2)';
+    title = '2o turno Dilma vs Eduardo';
     labels = [ { name: 1, label: 'Dilma Roussef (PT)' },
   { name: 2, label: 'Eduardo Campos (PSB)' },
   { name: 7, label: 'Ninguém/Branco/Nulo' },
