@@ -17,12 +17,14 @@
     
 
     {{!-- RENDERIZA OS GRÁFICOS CROSSINGS --}}
-    {{#each dataset in crossingDataset}}
 
+    {{DUMMY.length}}
+    {{#each dataset in DUMMY}}
+    {{dataset.name}}
       {{!#if isBarchart}}
         {{!bar-chart action="showDetailsBarchart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
       {{!else}}
-        {{!line-chart action="showDetailsLinechart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
+        {{line-chart action="showDetailsLinechart" config=dataset.config width=screenWidth height=dataset.config.height colors=dataset.config.colors}}
       {{!/if}}
 
     {{/each}}

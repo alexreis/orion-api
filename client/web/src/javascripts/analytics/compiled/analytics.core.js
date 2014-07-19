@@ -389,7 +389,7 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
     { label: 'Renda familiar', value: 'RENDAF' }
   ],
 
-  isCrossLoaded: false,
+  isCrossLoaded: true,
   crossingDataset: [],
 
   watchCrossVariable: function() {
@@ -423,28 +423,28 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
 
         self.set('crossingDataset', []);
 
-        res.forEach(function(d) {
-          var config = {
-            type: 'linechart',
-                name: '',
-                width: 300,
-                height: 500,
-                colors: ['steelblue'],
-                margin: { top: 40, right: 100, bottom: 30, left: 40 },
-                scales: [
-                  { name: 'x', type: 'ordinal', range: 'width', domain: {'data': 'table', 'field': 'data.x'} },
-                  { name: 'y', range: 'height', nice: true, domain: {'data': 'table', 'field': 'data.y'} }
-                ],
-                axes: [
-                  {'type': 'x', 'scale': 'x'},
-                  {'type': 'y', 'scale': 'y'}
-                ]
-          };
+        // res.forEach(function(d) {
+        //   var config = {
+        //     type: 'linechart',
+        //         name: '',
+        //         width: 300,
+        //         height: 500,
+        //         colors: ['steelblue'],
+        //         margin: { top: 40, right: 100, bottom: 30, left: 40 },
+        //         scales: [
+        //           { name: 'x', type: 'ordinal', range: 'width', domain: {'data': 'table', 'field': 'data.x'} },
+        //           { name: 'y', range: 'height', nice: true, domain: {'data': 'table', 'field': 'data.y'} }
+        //         ],
+        //         axes: [
+        //           {'type': 'x', 'scale': 'x'},
+        //           {'type': 'y', 'scale': 'y'}
+        //         ]
+        //   };
 
-          config.data = d;
+        //   config.data = d;
 
-          crossingDataset.push(config);
-        });
+        //   crossingDataset.pushObject(config);
+        // });
 
         self.set('isCrossLoaded', true);
       }, function(res) {
@@ -464,6 +464,125 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
   from: null,    
   detailsLinechart: null,
   detailsBarchart: null,
+
+  DUMMY: [
+    {
+      _id: 'EPPR2',
+      name: 'EPPR2',
+      title: 'Titulo qualquer',
+
+      config: {
+        type: 'linechart',
+        name: '',
+        width: 300,
+        height: 500,
+        colors: ['steelblue'],
+        margin: { top: 40, right: 100, bottom: 30, left: 40 },
+        scales: [
+          { name: 'x', type: 'ordinal', range: 'width', domain: {'data': 'table', 'field': 'data.x'} },
+          { name: 'y', range: 'height', nice: true, domain: {'data': 'table', 'field': 'data.y'} }
+        ],
+        axes: [
+          {'type': 'x', 'scale': 'x'},
+          {'type': 'y', 'scale': 'y'}
+        ]
+      },
+
+      data: [
+            {
+                "name": "Aécio",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 10
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 10
+                    }
+                ]
+            },
+            {
+                "name": "Dilma",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 22
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 21
+                    }
+                ]
+            },
+            {
+                "name": "Eduardo",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 4
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 4
+                    }
+                ]
+            },
+            {
+                "name": "Outros",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 6
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 6
+                    }
+                ]
+            },
+            {
+                "name": "Ninguém",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 10
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 11
+                    }
+                ]
+            },
+            {
+                "name": "NS",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 48
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 48
+                    }
+                ]
+            },
+            {
+                "name": "NR",
+                "values": [
+                    {
+                        "date": "2014-07-17",
+                        "value": 0
+                    },
+                    {
+                        "date": "2014-07-18",
+                        "value": 0
+                    }
+                ]
+            }
+        ] 
+    }
+  ],
 
   actions: {
     showDetailsLinechart: function(d) {
@@ -2132,7 +2251,7 @@ function program4(depth0,data) {
 Ember.TEMPLATES['dashboards/dashboard/variable'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, escapeExpression=this.escapeExpression, helperMissing=helpers.helperMissing, self=this;
 
 function program1(depth0,data) {
   
@@ -2144,21 +2263,39 @@ function program3(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts;
   data.buffer.push("\n    \n\n    ");
+  data.buffer.push("\n\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "DUMMY.length", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.each.call(depth0, "dataset", "in", "crossingDataset", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "dataset", "in", "DUMMY", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n\n\n    ");
   return buffer;
   }
 function program4(depth0,data) {
   
-  var buffer = '';
-  data.buffer.push("\n\n      ");
+  var buffer = '', stack1, hashTypes, hashContexts, options;
+  data.buffer.push("\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "dataset.name", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
+  data.buffer.push("\n      ");
   data.buffer.push("\n        ");
   data.buffer.push("\n      ");
   data.buffer.push("\n        ");
+  hashContexts = {'action': depth0,'config': depth0,'width': depth0,'height': depth0,'colors': depth0};
+  hashTypes = {'action': "STRING",'config': "ID",'width': "ID",'height': "ID",'colors': "ID"};
+  options = {hash:{
+    'action': ("showDetailsLinechart"),
+    'config': ("dataset.config"),
+    'width': ("screenWidth"),
+    'height': ("dataset.config.height"),
+    'colors': ("dataset.config.colors")
+  },contexts:[],types:[],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
+  data.buffer.push(escapeExpression(((stack1 = helpers['line-chart'] || depth0['line-chart']),stack1 ? stack1.call(depth0, options) : helperMissing.call(depth0, "line-chart", options))));
   data.buffer.push("\n      ");
   data.buffer.push("\n\n    ");
   return buffer;
@@ -2285,8 +2422,7 @@ function program14(depth0,data) {
   hashContexts = {};
   options = {hash:{},contexts:[depth0,depth0],types:["ID","INTEGER"],hashContexts:hashContexts,hashTypes:hashTypes,data:data};
   data.buffer.push(escapeExpression(((stack1 = helpers.slice || depth0.slice),stack1 ? stack1.call(depth0, "model.title", 26, options) : helperMissing.call(depth0, "slice", "model.title", 26, options))));
-  data.buffer.push("</h1>\n</header>\n\n");
-  data.buffer.push("\n\n<div class=\"content\">\n  <div class=\"content-padded\">\n    ");
+  data.buffer.push("</h1>\n</header>\n\n<div class=\"content\">\n  <div class=\"content-padded\">\n    ");
   hashContexts = {'content': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'prompt': depth0,'value': depth0};
   hashTypes = {'content': "ID",'optionValuePath': "STRING",'optionLabelPath': "STRING",'prompt': "STRING",'value': "ID"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
