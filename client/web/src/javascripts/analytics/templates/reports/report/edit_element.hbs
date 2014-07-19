@@ -1,0 +1,18 @@
+<header class="bar bar-nav">
+    <button {{action "cancel"}} class="btn pull-left">Cancelar</button>
+    <button {{action "save"}} class="btn pull-right">Salvar</button>
+
+    <h1 class="title">Edição elemento</h1>
+  </header>
+
+  <div class="content">
+    <div class="content-padded">
+      <form>
+        {{input type="text" placeholder="Título do elemento" value=title}}
+      </form>
+    </div>
+  </div>
+
+  <div class="bar bar-standard bar-footer">
+    <button {{action "remove"}} class="btn btn-block">Remover</button>
+  </div>

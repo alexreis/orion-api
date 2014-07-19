@@ -1,0 +1,37 @@
+<header class="bar bar-nav">
+  {{#link-to 'dashboards.index' class="icon icon-left-nav pull-left"}}{{/link-to}}
+  {{!#link-to 'dashboards.dashboard.edit' class="icon icon-edit pull-right"}}{{!/link-to}}
+  <h1 class="title">{{name}}</h1>
+</header>
+
+<div class="content">
+  <div class="content-padded">
+    <p>{{description}}</p>
+
+    <div class="card">
+      <form class="input-group">
+  {{!-- <div class="input-row"> --}}
+    {{!-- <label>De</label> --}}
+    {{!input type="date" value="2014-07-14" placeholder="De" disabled="disabled"}}
+  {{!-- </div> --}}
+  <div class="input-row">
+    <label>Até</label>
+    {{input type="date" value=toFAKE placeholder="Até"}}
+  </div>
+  </form>
+
+  </div>
+  <div class="card">
+      <ul class="table-view">
+        {{#each variable in variables}}
+        <li class="table-view-cell">
+          {{#link-to 'dashboards.dashboard.variable' variable.name from to class="navigate-right"}}
+            {{variable.title}}
+          {{/link-to}}
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,28 @@
+dir `src`
+=========
+
+## Estruturação do diretório
+
+O Diretório tem três subdiretórios: dependencies, javascripts e stylesheets.
+
+.
+├── README
+├── dependencies
+│   ├── compiled
+│   └── lib
+├── javascripts
+│   └── analytics
+└── stylesheets
+    └── analytics
+
+### Dir `dependencies`
+
+É responsável por conter todos os arquivos frutos de compilação ou de bibliotecas/templates/frameworks externos.
+
+### Dir `javascripts`
+
+Responsável por conter todo o código JavaScript escrito pela equipe do Orion. É importante notar a subdivisão dos diretórios aqui. Cada subdiretório é uma "aplicação" JavaScript, ou seja, um conjunto de arquivos JavaScript responsável por um módulo específico do Orion.
+
+### Dir `stylesheets`
+
+Responsável por conter todo o código de estilo (CSS, LESS, etc) escrito pela equipe do Orion. A sua estrutura de subdiretórios é semelhante ao do diretório `javascripts`.

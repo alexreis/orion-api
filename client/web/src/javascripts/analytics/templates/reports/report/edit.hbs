@@ -1,0 +1,20 @@
+<header class="bar bar-nav">
+    <button {{action "cancel"}} class="btn pull-left">Cancelar</button>
+    <button {{action "save"}} class="btn pull-right">Salvar</button>
+
+    <h1 class="title">{{name}}</h1>
+  </header>
+
+  <div class="content">
+    <div class="content-padded">
+      <form>
+        {{input type="text" value=name}}
+        {{view Ember.TextArea value=description rows="5"}}
+        
+      </form>
+    </div>
+  </div>
+
+  <div class="bar bar-standard bar-footer">
+    {{#link-to 'reports.report.newElement' class="btn btn-block"}}Novo elemento{{/link-to}}
+  </div>

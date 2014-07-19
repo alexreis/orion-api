@@ -1,0 +1,43 @@
+.de-chart {
+  font-family: 'Helvetica Neue', 'Arial', 'sans serif';
+  font-size: 11px;
+  color: rgb(40,40,40);
+}
+
+.de-bar-chart {
+
+}
+
+.de-bar-chart path {
+  
+}
+
+.de-title {
+  text-anchor: center;
+  fill: rgb(80,80,80);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.de-axis path,
+.de-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.de-rect {
+  fill: steelblue;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.de-line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.de-line-chart {
+
+}

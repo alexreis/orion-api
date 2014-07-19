@@ -1,0 +1,72 @@
+<header class="bar bar-nav">
+  {{#link-to 'dashboards.dashboard.index' class="icon icon-left-nav pull-left"}}{{/link-to}}
+  <h1 class="title">{{slice model.title 26}}</h1>
+</header>
+
+{{!-- <div id="popover" class="popover">
+  <header class="bar bar-nav">
+    <h1 class="title">Popover title</h1>
+  </header>
+  <ul class="table-view">
+    <li class="table-view-cell">Item1</li>
+    <li class="table-view-cell">Item2</li>
+    <li class="table-view-cell">Item3</li>
+    <li class="table-view-cell">Item4</li>
+    <li class="table-view-cell">Item5</li>
+    <li class="table-view-cell">Item6</li>
+    <li class="table-view-cell">Item7</li>
+    <li class="table-view-cell">Item8</li>
+  </ul>
+</div> --}}
+
+<div class="content">
+  <div class="content-padded">
+    {{view Ember.Select
+        content=crossings
+        optionValuePath="content.value"
+        optionLabelPath="content.label"
+        prompt="Cruzamentos"
+        value=crossVariable
+      }}
+
+
+    {{#if isValid}}
+    {{#if isBarchart}}
+      {{bar-chart action="showDetailsBarchart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
+    {{else}}
+      {{line-chart action="showDetailsLinechart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
+    {{/if}}
+    
+
+    {{#if detailsLinechart}}
+    <div class="card">
+      <ul class="table-view">
+        <li class="table-view-cell table-view-divider">{{detailsLinechart.name}}</li>
+        {{#each item in detailsLinechart.values}}
+        <li class="table-view-cell">
+          <span class="pull-left">{{date item.date '%d/%m/%Y'}}</span>
+          <span class="pull-right">{{item.value}}%</span>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    {{/if}}
+
+    {{#if detailsBarchart}}
+    <div class="card">
+      <ul class="table-view">
+        <li class="table-view-cell table-view-divider">{{detailsBarchart.y}}</li>
+        <li class="table-view-cell">
+          <span class="pull-left">{{from}}</span>
+          <span class="pull-right">{{detailsBarchart.x}}%</span>
+        </li>
+      </ul>
+    </div>
+    {{/if}}
+
+
+    {{else}}
+      Período inválido.
+    {{/if}}
+  </div>
+</div>

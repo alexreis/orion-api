@@ -1,0 +1,26 @@
+<header class="bar bar-nav">
+  <button {{action "cancel"}} class="btn pull-left">Cancelar</button>
+  <button {{action "save"}} class="btn pull-right">Salvar</button>
+
+  <h1 class="title">{{name}}</h1>
+</header>
+
+<div class="content">
+  <div class="content-padded">
+    <form>
+      {{input type="text" value=name}}
+      {{view Ember.TextArea value=description rows="5"}}
+        
+       <button {{action "openModal"}} class="btn btn-block">Variáveis</button>
+
+    <ul class="table-view">
+      {{#each variable in selectedVariables}}
+      <li class="table-view-cell">
+        {{variable.name}}
+      </li>
+    {{/each}}
+    </ul>
+    
+    </form>
+  </div>
+</div>

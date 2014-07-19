@@ -1,0 +1,17 @@
+<div class="modal active">
+  <header class="bar bar-nav">
+    <a {{action "closeModal"}} class="icon icon-close pull-right"></a>
+    <h1 class="title">Variáveis</h1>
+  </header>
+
+  <div class="content">
+    <ul class="table-view">
+      {{#each variable in variableOptions}}
+      <li class="table-view-cell">
+        {{variable.name}}
+        <div {{action "toggleVariable" variable}} {{bind-attr class=":toggle variable.active:active"}}><div class="toggle-handle"></div></div>
+      </li>
+    {{/each}}
+    </ul>
+  </div>
+</div>

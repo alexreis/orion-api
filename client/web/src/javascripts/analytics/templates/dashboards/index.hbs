@@ -1,0 +1,26 @@
+<header class="bar bar-nav">
+  {{!#link-to 'orion.index' class="icon icon-left-nav pull-left"}}{{!/link-to}}
+  {{!#link-to 'dashboards.new' class="icon icon-compose pull-right"}}{{!/link-to}}
+  <a {{action "logout"}} class="icon icon-close pull-right"></a>
+  <h1 class="title">Dashboards</h1>
+</header>
+
+<div class="content">
+  <div class="content-padded">
+    {{!-- <form>
+    {{input type="search" value=queryName tabindex="1"}}
+    </form> --}}
+
+    <div class="card">
+      <ul class="table-view">
+        {{#each dashboard in filteredDashboards}}
+        <li class="table-view-cell">
+          {{#link-to 'dashboards.dashboard' dashboard class="navigate-right"}}
+            {{dashboard.name}}
+          {{/link-to}}
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

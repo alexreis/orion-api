@@ -46,33 +46,15 @@ exports.find = function(req, res) {
   });
 };
 
-// exports.cop = function(req, res) {
-//  //  var queryCOP1 = "SELECT COP1, count(COP1) FROM pactualtrackingnacional_backup
-//  //    WHERE REM = 0
-//  //    AND COP1 != -1
-//  //    AND ANO*10000+MES*100+DIA BETWEEN '20140714' AND '20140717'
-//  //    AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9
-//  //    GROUP BY COP1";
+exports.crossings = function(req, res) {
+  var currentVar = req.params.current_var,
+      crossVar = req.params.cross_var;
 
-//  // var queryCOP2 = "SELECT COP2, count(COP2) FROM pactualtrackingnacional_backup
-//  //    WHERE REM = 0
-//  //    AND COP2 != -1
-//  //    AND ANO*10000+MES*100+DIA BETWEEN '20140714' AND '20140717'
-//  //    AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9
-//  //    GROUP BY COP2";
+  console.log('currentVar', currentVar );
+  console.log('crossVar', crossVar );
 
-//  // var queryCOP3 = "SELECT COP3, count(COP3) FROM pactualtrackingnacional_backup
-//  //    WHERE REM = 0
-//  //    AND COP3 != -1
-//  //    AND ANO*10000+MES*100+DIA BETWEEN '20140714' AND '20140717'
-//  //    AND ELEITOR = 1 AND TRABALHO = 2 AND ESC < 5 AND RENDAF < 9
-//  //    GROUP BY COP3";
-
-
-//  //  var queries = [queryCOP1, queryCOP2, queryCOP3];
-
-//  return res.send(200);
-// };
+ return res.send(200);
+};
 
 exports.findById = function(req, res) {
   var column = req.params.id;

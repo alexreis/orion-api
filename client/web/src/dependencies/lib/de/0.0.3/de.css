@@ -1,0 +1,87 @@
+.de-chart {
+  font-family: 'Helvetica Neue', 'Arial', 'sans serif';
+  font-size: 12px;
+  color: rgb(40,40,40);
+}
+
+.de-bar-chart {
+
+}
+
+.de-bar-chart path {
+  
+}
+
+.de-title {
+  text-anchor: center;
+  fill: rgb(80,80,80);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/*.de-axis path,
+.de-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}*/
+
+.de-axis text {
+  fill: rgb(20, 20, 20);
+}
+.de-axis path {
+  display: none;
+}
+.de-axis line {
+  fill: none;
+  shape-rendering: crispEdges;
+  stroke: rgb(120, 120, 120);
+  stroke-width: 1px;
+}
+.de-axis-y line {
+  display: none;
+}
+
+.de-rect {
+  fill: rgb(220,220,220);
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+  cursor: pointer;
+}
+
+.de-line {
+  fill: none;
+  stroke: #000;
+  stroke-width: 1.5px;
+  cursor: pointer;
+}
+.de-line-clickarea {
+  fill: none;
+  stroke: 'transparent';
+  stroke-width: 20px;
+  cursor: pointer;
+}
+
+.active-line {
+  fill: none;
+  stroke-width: 4px;
+  cursor: pointer;
+}
+.active-rect {
+  fill: rgb(186,216,10);
+  stroke-width: 4px;
+}
+
+.de-line-chart {
+
+}
+
+.de-axis-grid line,
+.de-axis-grid path {
+  shape-rendering: crispEdges;
+  stroke: rgb(220, 220, 220);
+  stroke-dasharray: 2,2;
+}
+.de-axis-grid text {
+  display: none;
+}

@@ -1,0 +1,41 @@
+<header class="bar bar-nav">
+    {{#link-to 'reports.index' class="icon icon-left-nav pull-left"}}{{/link-to}}
+    {{#link-to 'reports.report.edit' class="icon icon-edit pull-right"}}{{/link-to}}
+    <h1 class="title">{{name}}</h1>
+  </header>
+
+  <div class="content">
+    <div class="content-padded">
+      <p>{{description}}</p>
+
+        
+      {{outlet currentElement}}
+        <ul>
+          {{#each element in elements}}
+          <li>[ {{element.position}} | {{element.elementType}} ] {{element.title}} ({{#link-to 'reports.report.editElement' element}}Editar{{/link-to}})</li>
+          {{/each}}
+        </ul>
+
+
+    </div>
+  </div>
+
+  <nav class="bar bar-tab">
+    <a {{action "previousElement"}} class="tab-item active">
+      {{#if currentElementIndex}}
+        <span class="icon icon-left"></span>
+      {{/if}}
+    </a>
+    <a class="tab-item">
+      [ {{currentElementPosition}} / {{elements.length}} ]
+    </a>
+    
+
+    <a {{action "nextElement"}} class="tab-item">
+      {{#unless isLastElement}}
+      <span class="icon icon-right"></span>
+      {{/unless}}
+    </a>
+    
+    
+  </nav>

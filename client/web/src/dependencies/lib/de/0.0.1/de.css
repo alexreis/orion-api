@@ -1,0 +1,30 @@
+.de-chart {
+  font-family: 'Helvetica Neue', 'Arial', 'sans serif';
+  font-size: 11px;
+  color: rgb(40,40,40);
+}
+
+.de-bar-chart {
+
+}
+
+.de-bar-chart path {
+  
+}
+
+.de-axis path,
+.de-axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.de-rect {
+  fill: steelblue;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+
+.de-line-chart {
+
+}

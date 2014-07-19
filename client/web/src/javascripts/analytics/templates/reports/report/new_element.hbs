@@ -1,0 +1,37 @@
+<header class="bar bar-nav">
+  <button {{action "cancel"}} class="btn pull-left">Cancelar</button>
+  <button {{action "save"}} class="btn pull-right">Salvar</button>
+
+  <h1 class="title">Novo elemento</h1>
+</header>
+
+<div class="content">
+  <div class="content-padded">
+    <form>
+      {{input type="text" placeholder="Título do elemento" value=title}}
+
+      {{view Ember.Select
+        content=elementTypes
+        optionValuePath="content.value"
+        optionLabelPath="content.label"
+        prompt="Selecione um elemento"
+        value=elementType
+      }}
+
+      {{view Ember.Select
+        content=questionnaires
+        optionValuePath="content"
+        optionLabelPath="content.name"
+        prompt="Selecione um questionário"
+        value=questionnaire
+      }}
+
+      <ul class="table-view">
+        {{#each variable in questionnaire.variables}}
+        <li class="table-view-cell">{{variable}} <button {{action "addVariable" variable}} class="btn">+</button></li>
+        {{/each}}
+      </ul>
+
+    </form>
+  </div>
+</div>

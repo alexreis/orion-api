@@ -204,7 +204,7 @@ app.patch( '/v1/reports/:id', restrict, reports.patchRecord );
 
 // Variables
 app.get(    '/v1/variables', restrict, variables.find );
-// app.get(    '/v1/variables/loneCOP', restrict, variables.cop );
+app.get(    '/v1/variables/crossings/:current_var/:cross_var', restrict, variables.crossings );
 app.get(    '/v1/variables/:id', restrict, variables.findById );
 app.post(   '/v1/variables', restrict, variables.createRecord );
 app.put(    '/v1/variables/:id', restrict, variables.updateRecord );

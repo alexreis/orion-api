@@ -1,0 +1,26 @@
+<header class="bar bar-nav">
+  {{#link-to 'orion.index' class="icon icon-left-nav pull-left"}}{{/link-to}}
+  {{#link-to 'reports.new' class="icon icon-compose pull-right"}}{{/link-to}}
+  <h1 class="title">Relatórios</h1>
+</header>
+
+<div class="content">
+  <div class="content-padded">
+    <form>
+    {{input type="search" value=queryName tabindex="1"}}
+    </form>
+
+    <div class="card">
+      <ul class="table-view">
+        {{#each report in filteredReports}}
+        <li class="table-view-cell">
+          {{#link-to 'reports.report' report class="navigate-right"}}
+            <span class="badge">{{date report.createdAt '%Y-%m-%d'}}</span>
+            {{report.name}}
+          {{/link-to}}
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
