@@ -1,7 +1,7 @@
 orion-api
 =========
 
-# INSTALAÇÃO
+## INSTALAÇÃO
 
 É necessário ter os seguintes softwares já instalados no ambiente de desenvolvimento e no de produção:
 
@@ -23,9 +23,9 @@ Esse arquivo é necessário para precompilar os templates handlebars, utilizados
 
 ---
 
-# EMBER APP
+## EMBER APP
 
-## JavaScripts
+### JavaScripts
 
 O código fonte da aplicação Ember está em `/client/web`. A aplicação é composta
 de dois arquivos JavaScript: analytics.core.js e analytics.libraries.min.js, onde:
@@ -35,7 +35,7 @@ de dois arquivos JavaScript: analytics.core.js e analytics.libraries.min.js, ond
 
 Para compilar o código, basta `make analytics.core.js` e `make analytics.libraries.min.js`
 
-## Stylesheets
+### Stylesheets
 
 Existem 2 dependências de estilo, em 3 arquivos:
 
@@ -45,24 +45,24 @@ Existem 2 dependências de estilo, em 3 arquivos:
 
 Onde o último, de.css, é o stylesheet para a dependência de.js.
 
-## HTML
+### HTML
 
 O arquivo `/client/web/index_model.html` contém o modelo que pode ser usado para
 dar deploy na aplicação em outro local que não seja a Amazon S3.
 
-## Nota
+### Nota
 
 Todas as dependências se encontram em `/client/web/src/dependencies`.
 
 ---
 
-# SERVIDOR DE PRODUÇÃO
+## SERVIDOR DE PRODUÇÃO
 
 ssh -i CHAVE_PRIVADA root@192.34.56.106
 
 ---
 
-# VAR NAMES
+## VAR NAMES
 
 { name: 'TRABALHO', title: 'Condição de trabalho', data: [] }
 { name: 'ROD', title: 'Rodada do tracking', data: [] }
@@ -99,7 +99,7 @@ ssh -i CHAVE_PRIVADA root@192.34.56.106
 
 ---
 
-# COMO CRIAR UM DASHBOARD NO MONGODB
+## COMO CRIAR UM DASHBOARD NO MONGODB
 
 1. Abre o mongo bash no shell. Os próximos passos já é dentro da shell.
 
@@ -120,7 +120,7 @@ db.dashboards.insert({ name: 'Tracking Vox Nacional', variables: [
 
 ---
 
-# COMO ATUALIZAR UM DASHBOARD NO MONGODB
+## COMO ATUALIZAR UM DASHBOARD NO MONGODB
 
 1. Ache o id do dashboard.
 
