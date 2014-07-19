@@ -60,6 +60,11 @@ Todas as dependências se encontram em `/client/web/src/dependencies`.
 
 ssh -i CHAVE_PRIVADA root@192.34.56.106
 
+### Alteração no código JavaScript para outros servidores
+
+É necessário a alteração do arquivo /client/web/src/javascripts/analytics/store/store.js, nas linhas
+2 e 13, para colocar o IP do servidor de produção.
+
 ---
 
 ## VAR NAMES
