@@ -3,6 +3,11 @@ orion-api
 
 # INSTALAÇÃO
 
+É necessário ter os seguintes softwares já instalados no ambiente de desenvolvimento e no de produção:
+
+- MongoDB;
+- Nodejs.
+
 Após clonar o repositório, https://github.com/fabriciotav/orion-api/, é necessário baixar as dependências do node. Existem 
 dois conjuntos de dependências: um para o servidor, e outro para o desenvolvimento
 local do app Ember.
