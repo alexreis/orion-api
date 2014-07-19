@@ -251,8 +251,6 @@ exports.crossings = function(req, res) {  // GET :: http://DOMAIN.com.br/v1/vari
       queriesByVar = [query1, query2, query3, query4, query5];
       break;
   }
-
-
     // var query = "SELECT " + currentVar + ", count(" + currentVar + ") FROM pactualtrackingnacional_backup\
     //           WHERE REM = 0\
     //           AND " + currentVar + " != -1\
@@ -263,35 +261,92 @@ exports.crossings = function(req, res) {  // GET :: http://DOMAIN.com.br/v1/vari
     queriesByDate.push(queriesByVar);
   }
 
+  //     /* Resultado completo*/
+  var queryAll = "select " + currentVar + " AS V,count(*) from pactualtrackingnacional_backup where\
+                  rem=0 and (ELEITOR=1 AND TRABALHO=2 AND ESC<5 AND RENDAF<9 AND INVALIDO!=1)\
+                  GROUP BY V";
+
+  async.waterfall([
+    function(callback) {
+      Pactual.query(queryAll, function(err, data) {
+        if (err) return callback({ error: { status: 500, message: 'Internal Server Error.' }});
+        
+        var values = [];
+        data.forEach(function(d) {
+          values.push({ name: d['V'] });
+        });
+
+        return callback(null, values);
+      });
+    },
+
+    function(values, callback) {
+
+//-------
 
   var valuesInside = [];
 
   async.each(queriesByDate, function(queryByDate, callbackEachDate) {
 
-    
+    var results = [];
     async.each(queryByDate, function(queryByVar, callbackEachVar) {
-      console.log('queryByVar\n', queryByVar);
+      console.log('queryByVar--------------------------------------------------\n');
       
       Pactual.query(queryByVar, function(err, data) {
         if (err) return callbackEachVar({ error: { status: 500, message: 'Internal Server Error.' }});
         
         data.forEach(function(d) {
-          console.log('data', d);
-          valuesInside.push({ name: d['V'] });
+          results.push({ name: d['V'] });          
         });
+
+        values.forEach(function(d) {
+          d.values = [];
+          console.log('results', results);
+          results.forEach(function(dd, ii) {
+            if (dd.length === 0) {
+              d.values.push({ date: dateStrings2[ii], value: 0});
+            } else {
+              var t = false;
+              dd.forEach(function(ddd, iii) {
+                if (ddd[req.params.id] === d.name) {
+                  t = iii;
+                }
+              });
+
+              if (t !== false) {
+                d.values.push({ date: dateStrings2[ii], value: dd[t]['count(*)']});
+              } else {
+                d.values.push({ date: dateStrings2[ii], value: 0});
+              }
+            }
+          });
+        });
+        // valuesInside.push(results);
 
         return callbackEachVar(null);
       });
-
     }, function(err) {
-      return callbackEachDate(null);
+
+        return callbackEachDate(null);
     });
   }, function(err) {
     // Error in queryByDate
+
     console.log('END');
+    console.log('valuesInside', valuesInside);
   });
 
-  console.log('valuesInside', valuesInside);
+  
+
+//-------
+
+
+    }
+  ], function(err, results) {
+    if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
+
+  });
+
 
   // console.log('queriesByDate', queriesByDate);
 
@@ -401,7 +456,8 @@ exports.findById = function(req, res) {  // GET :: http://DOMAIN.com.br/v1/varia
     function(values, results, callback) {
       var holder = [];
       
-      // console.log('valuesvaluesvaluesvaluesvaluesvaluesvalues', values);
+      console.log('valuesvaluesvaluesvaluesvaluesvaluesvalues', values);
+      console.log('resultsresultsresultsresultsresultsresults', results);
       var n = values.length;
       values.forEach(function(d) {
         d.values = [];
