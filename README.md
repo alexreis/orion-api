@@ -1,6 +1,22 @@
 orion-api
 =========
 
+# TODO
+
+Arquivos que precisam ser trabahados:
+
+1. /resources/variables.js
+2. /client/web/src/javascripts/analytics/controllers/dashboards/dashboard/variable_controller.js
+3. /client/web/src/javascripts/analytics/templates/dashboards/dashboard/variable.hbs
+
+Onde:
+
+1. Contém as requisições ao banco de dados;
+2. Faz a requisição ao banco e retorna os dados para serem renderizados. Além disso, gerencia essa renderização.
+3. Template handlebars.
+
+---
+
 ## INSTALAÇÃO
 
 É necessário ter os seguintes softwares já instalados no ambiente de desenvolvimento e no de produção:

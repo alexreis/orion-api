@@ -380,9 +380,7 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
   crossVariable: null,
   currentVariable: null,
 
-  crossings: [
-    // { label: 'Região', value: 'REG' },
-    
+  crossingsOptions: [
     { label: 'Zona residencial', value: 'ZONA' },
     { label: 'Sexo', value: 'SEXO' },
     { label: 'Idade categorizada', value: 'IDADEF' },
@@ -391,25 +389,73 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
     { label: 'Renda familiar', value: 'RENDAF' }
   ],
 
+  isCrossLoaded: false,
+  crossingDataset: [],
+
   watchCrossVariable: function() {
-    var currentVariable = this.get('currentVariable'),
-        crossVariable = this.get('crossVariable');
+    var self = this,
+        currentVariable = this.get('currentVariable'),
+        crossVariable = this.get('crossVariable')
+        crossingDataset = this.get('crossingDataset');
 
-    var from = '2014-07-18',
-        to = '2014-07-20';
-        
-    $.ajax(HOST + '/v1/variables/crossings/' + currentVariable + '/' + crossVariable + '/?from=' + from + '&to=' + to, {
-      type: 'GET',
-      headers: {
-        'X-Auth-Token': localStorage.token
-      }
-    }).then(function(res) {
-      console.log('success::watchCrossVariable', res);
-    }, function(res) {
-      console.log('error::watchCrossVariable', res);
-    });
+    var format = d3.time.format('%Y-%m-%d');
 
+    if (crossVariable !== null) {
+      var from = '2014-07-18', // from deve ser fixo. A série começa aqui.
+          to = format(d3.time.day.offset(new Date(), 1)); // tem que ser data do dia, + 1: new Date()
+
+      $.ajax(HOST + '/v1/variables/crossings/' + currentVariable + '/' + crossVariable + '/?from=' + from + '&to=' + to, {
+        type: 'GET',
+        headers: {
+          'X-Auth-Token': localStorage.token
+        }
+      }).then(function(res) {
+        console.log('success::watchCrossVariable', res);
+
+        // Aqui é necessário atualizar a array crossingDataset, mas antes é 
+        // preciso fazer uma transformação nos dados, para que o Ember Component
+        // dos gráficos reconheçam e renderizem os gráficos.
+        //
+        // A transformação que deve ser feita é:
+        // "apendar" cada dataset, de forma separada, à var config. Depois jogar
+        // tudo pra dentro da array crossingDataset.
+        //
+
+        self.set('crossingDataset', []);
+
+        res.forEach(function(d) {
+          var config = {
+            type: 'linechart',
+                name: '',
+                width: 300,
+                height: 500,
+                colors: ['steelblue'],
+                margin: { top: 40, right: 100, bottom: 30, left: 40 },
+                scales: [
+                  { name: 'x', type: 'ordinal', range: 'width', domain: {'data': 'table', 'field': 'data.x'} },
+                  { name: 'y', range: 'height', nice: true, domain: {'data': 'table', 'field': 'data.y'} }
+                ],
+                axes: [
+                  {'type': 'x', 'scale': 'x'},
+                  {'type': 'y', 'scale': 'y'}
+                ]
+          };
+
+          config.data = d;
+
+          crossingDataset.push(config);
+        });
+
+        self.set('isCrossLoaded', true);
+      }, function(res) {
+        self.set('isCrossLoaded', false);
+      });
+    } else {
+      self.set('isCrossLoaded', false);
+    }
   }.observes('crossVariable'),
+
+  
 
   screenWidth: function() {
     return window.screen.width - 20;
@@ -921,7 +967,6 @@ Oa.DashboardsDashboardVariableRoute = Oa.AuthRoute.extend({
   setupController: function(controller, model) {
     this._super(controller, model);
     controller.set('currentVariable', model._id);
-    console.log('model.id', model._id);
 
     controller.set('detailsLinechart', null);
     controller.set('detailsBarchart', null);
@@ -963,29 +1008,14 @@ Oa.DashboardsDashboardVariableRoute = Oa.AuthRoute.extend({
       var config = {
       type: 'linechart',
           name: '',
-
           width: 300,
           height: 500,
-
           colors: ['steelblue'],
           margin: { top: 40, right: 100, bottom: 30, left: 40 },
-
           scales: [
-            {
-              name: 'x',
-              type: 'ordinal',
-              range: 'width',
-              domain: {'data': 'table', 'field': 'data.x'}
-            },
-
-            {
-              name: 'y',
-              range: 'height',
-              nice: true,
-              domain: {'data': 'table', 'field': 'data.y'}
-            }
+            { name: 'x', type: 'ordinal', range: 'width', domain: {'data': 'table', 'field': 'data.x'} },
+            { name: 'y', range: 'height', nice: true, domain: {'data': 'table', 'field': 'data.y'} }
           ],
-
           axes: [
             {'type': 'x', 'scale': 'x'},
             {'type': 'y', 'scale': 'y'}
@@ -2102,7 +2132,7 @@ function program4(depth0,data) {
 Ember.TEMPLATES['dashboards/dashboard/variable'] = Ember.Handlebars.template(function anonymous(Handlebars,depth0,helpers,partials,data) {
 this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Ember.Handlebars.helpers); data = data || {};
-  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression, self=this;
+  var buffer = '', stack1, stack2, hashContexts, hashTypes, options, self=this, helperMissing=helpers.helperMissing, escapeExpression=this.escapeExpression;
 
 function program1(depth0,data) {
   
@@ -2113,25 +2143,50 @@ function program1(depth0,data) {
 function program3(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push("\n    \n\n    ");
   data.buffer.push("\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "isBarchart", {hash:{},inverse:self.program(6, program6, data),fn:self.program(4, program4, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n    \n\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "detailsLinechart", {hash:{},inverse:self.noop,fn:self.program(8, program8, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
-  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
-  data.buffer.push("\n\n    ");
-  hashTypes = {};
-  hashContexts = {};
-  stack1 = helpers['if'].call(depth0, "detailsBarchart", {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "dataset", "in", "crossingDataset", {hash:{},inverse:self.noop,fn:self.program(4, program4, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n\n\n    ");
   return buffer;
   }
 function program4(depth0,data) {
+  
+  var buffer = '';
+  data.buffer.push("\n\n      ");
+  data.buffer.push("\n        ");
+  data.buffer.push("\n      ");
+  data.buffer.push("\n        ");
+  data.buffer.push("\n      ");
+  data.buffer.push("\n\n    ");
+  return buffer;
+  }
+
+function program6(depth0,data) {
+  
+  var buffer = '', stack1, hashTypes, hashContexts;
+  data.buffer.push(" ");
+  data.buffer.push("\n    \n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "isBarchart", {hash:{},inverse:self.program(9, program9, data),fn:self.program(7, program7, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    \n\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "detailsLinechart", {hash:{},inverse:self.noop,fn:self.program(11, program11, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n\n    ");
+  hashTypes = {};
+  hashContexts = {};
+  stack1 = helpers['if'].call(depth0, "detailsBarchart", {hash:{},inverse:self.noop,fn:self.program(14, program14, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
+  data.buffer.push("\n    ");
+  return buffer;
+  }
+function program7(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n      ");
@@ -2149,7 +2204,7 @@ function program4(depth0,data) {
   return buffer;
   }
 
-function program6(depth0,data) {
+function program9(depth0,data) {
   
   var buffer = '', stack1, hashContexts, hashTypes, options;
   data.buffer.push("\n      ");
@@ -2167,7 +2222,7 @@ function program6(depth0,data) {
   return buffer;
   }
 
-function program8(depth0,data) {
+function program11(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts;
   data.buffer.push("\n    <div class=\"card\">\n      <ul class=\"table-view\">\n        <li class=\"table-view-cell table-view-divider\">");
@@ -2177,12 +2232,12 @@ function program8(depth0,data) {
   data.buffer.push("</li>\n        ");
   hashTypes = {};
   hashContexts = {};
-  stack1 = helpers.each.call(depth0, "item", "in", "detailsLinechart.values", {hash:{},inverse:self.noop,fn:self.program(9, program9, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack1 = helpers.each.call(depth0, "item", "in", "detailsLinechart.values", {hash:{},inverse:self.noop,fn:self.program(12, program12, data),contexts:[depth0,depth0,depth0],types:["ID","ID","ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack1 || stack1 === 0) { data.buffer.push(stack1); }
   data.buffer.push("\n      </ul>\n    </div>\n    ");
   return buffer;
   }
-function program9(depth0,data) {
+function program12(depth0,data) {
   
   var buffer = '', stack1, hashTypes, hashContexts, options;
   data.buffer.push("\n        <li class=\"table-view-cell\">\n          <span class=\"pull-left\">");
@@ -2198,7 +2253,7 @@ function program9(depth0,data) {
   return buffer;
   }
 
-function program11(depth0,data) {
+function program14(depth0,data) {
   
   var buffer = '', hashTypes, hashContexts;
   data.buffer.push("\n    <div class=\"card\">\n      <ul class=\"table-view\">\n        <li class=\"table-view-cell table-view-divider\">");
@@ -2215,12 +2270,6 @@ function program11(depth0,data) {
   data.buffer.push(escapeExpression(helpers._triageMustache.call(depth0, "detailsBarchart.x", {hash:{},contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
   data.buffer.push("%</span>\n        </li>\n      </ul>\n    </div>\n    ");
   return buffer;
-  }
-
-function program13(depth0,data) {
-  
-  
-  data.buffer.push("\n      Período inválido.\n    ");
   }
 
   data.buffer.push("<header class=\"bar bar-nav\">\n  ");
@@ -2241,16 +2290,16 @@ function program13(depth0,data) {
   hashContexts = {'content': depth0,'optionValuePath': depth0,'optionLabelPath': depth0,'prompt': depth0,'value': depth0};
   hashTypes = {'content': "ID",'optionValuePath': "STRING",'optionLabelPath': "STRING",'prompt': "STRING",'value': "ID"};
   data.buffer.push(escapeExpression(helpers.view.call(depth0, "Ember.Select", {hash:{
-    'content': ("crossings"),
+    'content': ("crossingsOptions"),
     'optionValuePath': ("content.value"),
     'optionLabelPath': ("content.label"),
     'prompt': ("Cruzamentos"),
     'value': ("crossVariable")
   },contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data})));
-  data.buffer.push("\n\n\n    ");
+  data.buffer.push("\n\n    ");
   hashTypes = {};
   hashContexts = {};
-  stack2 = helpers['if'].call(depth0, "isValid", {hash:{},inverse:self.program(13, program13, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
+  stack2 = helpers['if'].call(depth0, "isCrossLoaded", {hash:{},inverse:self.program(6, program6, data),fn:self.program(3, program3, data),contexts:[depth0],types:["ID"],hashContexts:hashContexts,hashTypes:hashTypes,data:data});
   if(stack2 || stack2 === 0) { data.buffer.push(stack2); }
   data.buffer.push("\n  </div>\n</div>\n");
   return buffer;

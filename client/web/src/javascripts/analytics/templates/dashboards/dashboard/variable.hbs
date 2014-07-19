@@ -22,15 +22,30 @@
 <div class="content">
   <div class="content-padded">
     {{view Ember.Select
-        content=crossings
+        content=crossingsOptions
         optionValuePath="content.value"
         optionLabelPath="content.label"
         prompt="Cruzamentos"
         value=crossVariable
       }}
 
+    {{#if isCrossLoaded}}
+    
 
-    {{#if isValid}}
+    {{!-- RENDERIZA OS GRÁFICOS CROSSINGS --}}
+    {{#each dataset in crossingDataset}}
+
+      {{!#if isBarchart}}
+        {{!bar-chart action="showDetailsBarchart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
+      {{!else}}
+        {{!line-chart action="showDetailsLinechart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
+      {{!/if}}
+
+    {{/each}}
+
+
+    {{else}} {{! If it doesn't have crossings, just render the normal chart for the variable }}
+    
     {{#if isBarchart}}
       {{bar-chart action="showDetailsBarchart" config=model.config width=screenWidth height=model.config.height colors=model.config.colors}}
     {{else}}
@@ -63,10 +78,6 @@
       </ul>
     </div>
     {{/if}}
-
-
-    {{else}}
-      Período inválido.
     {{/if}}
   </div>
 </div>
