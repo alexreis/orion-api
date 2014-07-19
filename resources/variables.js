@@ -462,6 +462,8 @@ case 'COR':
       format2 = d3.time.format('%Y-%m-%d'),
       tomorrow = d3.time.day.offset(new Date(), 1);
 
+console.log('req.query.from', req.query.from);
+console.log('req.query.to', req.query.to);
   if (req.query.from && req.query.to) {
       var from = req.query.from.replace(/-/g, '');
       var to = req.query.to.replace(/-/g, '');
@@ -471,9 +473,6 @@ case 'COR':
         to = format(tomorrow);
   }
   
-  console.log('from', from);
-  console.log('to', to);
-    
   var dates = d3.time.day.range(format.parse(from), format.parse(to), 1);
   console.log('DATES', dates);
   var dateStrings = [];
@@ -577,16 +576,17 @@ case 'COR':
   ], function(err, results) {
     if (err) return res.send(500, { error: { status: 500, message: 'Internal Server Error' }});
 
-    
-    // console.log( 'results', results );
     var total = 0;
+    
+    var DATES = dateStrings2.slice(0,-1);
+        DATESobj = [];
+      
+      DATES.forEach(function(DD) {
+        DATESobj.push({date: DD, total: 0});
+      });      
+
+    // Add label
     results.forEach(function(d, i) {
-      // console.log('RESULT D', d);
-
-      d.values.forEach(function(v) {
-        total += v.value;
-      });
-
       labels.forEach(function(dd) {
         if (d.name === dd.name) {
           d.name = dd.label;
@@ -594,19 +594,39 @@ case 'COR':
       });
     });
 
+    // Computes total
     results.forEach(function(d, i) {
-      // d.values.push({ date: '2014-07-18', value: d.values[0].value });
-      // d.values.push({ date: '2014-07-19', value: d.values[0].value + 10 });
-
-      d.values.forEach(function(v) {
-        v.value = d3.round((v.value/total) * 100, 0);
-        console.log('v.value', v.value);
-        // console.log('v', v);
-
+      d.values.forEach(function(dd) {
+        DATESobj.forEach(function(obj) {
+          if (obj.date === dd.date) {
+              obj.total += dd.value;
+          }
+        });
       });
     });
 
-    console.log('results---------', results);
+    // console.log('\n2------DATESobj\n', DATESobj);
+
+    // Computes total
+    results.forEach(function(d, i) {
+        d.values.forEach(function(v) {
+          DATESobj.forEach(function(obj) {
+          if (obj.date === v.date) {
+            v.value = d3.round((v.value/obj.total) * 100, 0);
+          }
+        });
+      });
+    });
+
+    results.forEach(function(d) {
+
+      var format2 = d3.time.format('%Y-%m-%d'),
+          yesterday = d3.time.day.offset(new Date(), -1);
+
+      d.values.forEach(function(dd) {
+        dd.date = format2(d3.time.day.offset(format2.parse(dd.date), -1));
+      });
+    });
     
 
     return res.send(200, { variable: { _id: req.params.id, name: req.params.id, title: title, data: results }});
