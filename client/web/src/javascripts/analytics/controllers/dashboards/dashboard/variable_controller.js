@@ -3,8 +3,6 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
   currentVariable: null,
 
   crossings: [
-    // { label: 'Região', value: 'REG' },
-    
     { label: 'Zona residencial', value: 'ZONA' },
     { label: 'Sexo', value: 'SEXO' },
     { label: 'Idade categorizada', value: 'IDADEF' },
@@ -19,7 +17,7 @@ Oa.DashboardsDashboardVariableController = Em.Controller.extend({
 
     var from = '2014-07-18',
         to = '2014-07-20';
-        
+
     $.ajax(HOST + '/v1/variables/crossings/' + currentVariable + '/' + crossVariable + '/?from=' + from + '&to=' + to, {
       type: 'GET',
       headers: {

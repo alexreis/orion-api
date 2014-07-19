@@ -1,6 +1,56 @@
 orion-api
 =========
 
+# INSTALAÇÃO
+
+Após clonar o repositório, https://github.com/fabriciotav/orion-api/, é necessário baixar as dependências do node. Existem 
+dois conjuntos de dependências: um para o servidor, e outro para o desenvolvimento
+local do app Ember.
+
+1. Na raiz do repositóio: npm install
+
+2. Em `/client/web`: npm install
+
+3. É necessário substituir o arquivo `client/web/node_modules/ember-tools/vendor/ember-template-compiler.js`
+pelo `/backup/ember-template-compiler.js`.
+
+Esse arquivo é necessário para precompilar os templates handlebars, utilizados pela aplicação Ember.
+
+---
+
+# EMBER APP
+
+## JavaScripts
+
+O código fonte da aplicação Ember está em `/client/web`. A aplicação é composta
+de dois arquivos JavaScript: analytics.core.js e analytics.libraries.min.js, onde:
+
+1. analytics.core.js: Contém o código escrito, em Ember e D3;
+2. analytics.libraries.min.js: Bibliotecas necessárias.
+
+Para compilar o código, basta `make analytics.core.js` e `make analytics.libraries.min.js`
+
+## Stylesheets
+
+Existem 2 dependências de estilo, em 3 arquivos:
+
+1. ratchet.min.css
+2. ratchet-theme-ios.min.css
+3. de.css
+
+Onde o último, de.css, é o stylesheet para a dependência de.js.
+
+## HTML
+
+O arquivo `/client/web/index_model.html` contém o modelo que pode ser usado para
+dar deploy na aplicação em outro local que não seja a Amazon S3.
+
+## Nota
+
+Todas as dependências se encontram em `/client/web/src/dependencies`.
+
+---
+
 # SERVIDOR DE PRODUÇÃO
 
 ssh -i CHAVE_PRIVADA root@192.34.56.106
