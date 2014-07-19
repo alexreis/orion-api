@@ -1,38 +1,12 @@
-METRONIC_ASSETS = _includes/templates/metronic/assets
 ANALYTICS = src/javascripts/analytics
 SRC_LIB = src/dependencies/lib
 
 .PHONY: analytics
 
-libraries.css:
-	cat $(METRONIC_ASSETS)/plugins/font-awesome/css/font-awesome.min.css \
-	$(METRONIC_ASSETS)/plugins/bootstrap/css/bootstrap.min.css \
-	$(METRONIC_ASSETS)/plugins/uniform/css/uniform.default.css \
-	$(METRONIC_ASSETS)/plugins/gritter/css/jquery.gritter.css \
-	$(METRONIC_ASSETS)/plugins/fullcalendar/fullcalendar/fullcalendar.css \
-	$(METRONIC_ASSETS)/plugins/jqvmap/jqvmap/jqvmap.css \
-	$(METRONIC_ASSETS)/plugins/jquery-easy-pie-chart/jquery.easy-pie-chart.css \
-	$(METRONIC_ASSETS)/plugins/bootstrap-datepicker/css/datepicker.css \
-	$(METRONIC_ASSETS)/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css \
-	$(METRONIC_ASSETS)/plugins/bootstrap-datetimepicker/css/datetimepicker.css \
-	$(METRONIC_ASSETS)/css/style-metronic.css \
-	$(METRONIC_ASSETS)/css/style.css \
-	$(METRONIC_ASSETS)/css/style-responsive.css \
-	$(METRONIC_ASSETS)/css/plugins.css \
-	$(METRONIC_ASSETS)/css/pages/tasks.css \
-	$(METRONIC_ASSETS)/css/themes/default.css \
-	$(METRONIC_ASSETS)/css/print.css \
-	$(METRONIC_ASSETS)/css/custom.css \
-	$(METRONIC_ASSETS)/plugins/select2/select2.css \
-	$(METRONIC_ASSETS)/plugins/select2/select2-metronic.css \
-	$(METRONIC_ASSETS)/plugins/data-tables/DT_bootstrap.css \
-	$(METRONIC_ASSETS)/plugins/bootstrap-toastr/toastr.min.css \
-	> $(METRONIC_ASSETS)/css/libraries.css
-
 # ------------------------------------------------------------------------------
 # ANALYTICS
 #
-analytics: analytics.core.js analytics.templates.js analytics.libraries.css analytics.css
+analytics: analytics.core.js analytics.libraries.min.js
 	
 analytics.libraries.js:
 	cat src/dependencies/lib/d3/3.4.8/d3.js \
@@ -71,16 +45,3 @@ analytics.core.js: analytics.templates.js
 
 analytics.templates.js:
 	@node_modules/.bin/ember precompile -d $(ANALYTICS)/templates/ -f $(ANALYTICS)/compiled/templates.js
-
-analytics.libraries.css:
-	cat $(SRC_LIB)/bootstrap/3.2.0/css/bootstrap.min.css \
-	$(SRC_LIB)/font-awesome/4.1.0/css/font-awesome.min.css \
-	$(SRC_LIB)/metronic/2.0.2/css/style-metronic.css \
-	$(SRC_LIB)/metronic/2.0.2/css/style.css \
-	$(SRC_LIB)/metronic/2.0.2/css/style-responsive.css \
-	$(SRC_LIB)/metronic/2.0.2/css/themes/default.css \
-	> public/css/analytics.libraries.css
-
-analytics.css:
-	cat src/stylesheets/analytics/app.css \
-	> public/css/analytics.css
